@@ -25,24 +25,43 @@ string evalbmi(double bmi)
 	return "IF YOU'RE READING THIS, MACK BROKE SOMETHING";
 }
 
-int main()
+double getHeight()
 {
-	double height, weight;
-	double bmi;
-	string unit;
+	double height;
 	cout << "Enter your height: ";
 	cin >> height;
+	return height;
+}
+
+double getWeight()
+{
+	double weight;
 	cout << "Enter your weight: ";
 	cin >> weight;
+	return weight;
+}
+
+string getUnit()
+{
+	string unit;
 	while (unit != "i" && unit != "m")
 	{
 		cout << "Metric or Imperial? (m/i): ";
-		getline(cin, unit);
 		cin >> unit;
 	}
+	return unit;
+}
+
+void bmijunction(string unit, double height, double weight)
+{
+	double bmi;
 	if (unit == "i") { bmi = BMIimp(weight, height); }
 	else if (unit == "m") { bmi = BMImet(weight, height); }
-	string eval = evalbmi(bmi);
-	cout << "Your BMI is " << bmi << ", which is classified as " << eval << endl;
+	cout << "Your BMI is " << bmi << ", which is classified as " << evalbmi(bmi) << endl;
+}
+
+int main()
+{
+	bmijunction(getUnit(), getHeight(), getWeight());
 	return 0;
 }
